@@ -2,7 +2,23 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h1>Editing Book</h1>
-  		<%= render 'form', book: @book %>
+  		
+  		<%= render '/layouts/errors.html.erb', obj: @book %>
+  		
+  		<%= form_with model:@book,local:true do |f| %>
+  　　<div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control book_title' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :opinion %>
+        <%= f.text_area :body, class: 'form-control book_body' %>
+      </div>
+      <div class="form-group">
+      <%= f.submit "Update Book", class: 'btn btn-success' %>
+      </div>
+      <% end %>
+  		
   		<%= link_to 'Show', @book %> |
   		<%= link_to 'Back', books_path, class: "back" %>
   </div>

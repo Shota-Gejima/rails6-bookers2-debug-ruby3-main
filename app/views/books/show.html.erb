@@ -2,10 +2,13 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'users/info', user: current_user %>
+      <%= render 'users/info', user: @book.user %>
+      
+    
       <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @book %>
+      <%= render 'form', book: @book_new %>
     </div>
+    
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
@@ -17,9 +20,12 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', book_path(@book), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削しますか？" %></td>
+          
+          <% if @book.user == current_user %>
+          <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
+          <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に削しますか？" %></td>
         </tr>
+          <% end %>
       </table>
     </div>
   </div>
