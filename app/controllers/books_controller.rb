@@ -5,6 +5,8 @@ class BooksController < ApplicationController
     
     @book_new = Book.new
     
+    @book_comment = BookComment.new
+    
 
     
   end
