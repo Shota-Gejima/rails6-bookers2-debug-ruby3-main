@@ -1,0 +1,25 @@
+<table class ="table">
+  <% if @range == "User" %>
+    <h2>Users search for "<%= @search %>"</h2>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size: "100x100" %></td>
+          <td><%= link_to user.name, user_path(user) %></td>
+          <td><%= user.introduction %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <h2>Books search for "<%= @search %>"</h2>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= image_tag book.user.get_profile_image, size: "100x100" %></td>
+          <td><%= link_to book.title, book_path(book) %></td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+    <tbody>
+  <% end %>
+</table>

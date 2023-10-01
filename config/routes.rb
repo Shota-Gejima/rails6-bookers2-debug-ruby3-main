@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
-
-  get 'book_comments/create'
-  get 'book_comments/destroy'
-  get 'relationships/create'
-  get 'relationships/destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   devise_for :users
   root to: 'homes#top'
   get "home/about"=>"homes#about"
+  get "search" => "searches#search"
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy]

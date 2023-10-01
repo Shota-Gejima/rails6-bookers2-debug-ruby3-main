@@ -38,7 +38,7 @@ class BooksController < ApplicationController
     
     @book = Book.find(params[:id])
     
-    end
+  end
 
   def update
     @book = Book.find(params[:id])
