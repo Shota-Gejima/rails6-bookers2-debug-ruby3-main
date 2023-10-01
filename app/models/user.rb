@@ -35,4 +35,5 @@ class User < ApplicationRecord
   def following_by?(user)
     passive_relationships.find_by(follower_id: user.id).present?
   end
+  
 end
