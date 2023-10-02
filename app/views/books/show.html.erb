@@ -3,19 +3,17 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'users/info', user: @book.user %>
-      
-    
       <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @book_new %>
     </div>
-    
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
   		  <tr>
-          <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
-            <%= @book.user.name %>
+          <td>
+            <%= link_to(@book.user) do %>
+              <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
+              <%= @book.user.name %>
             <% end %>
           </td>
           <td><%= link_to @book.title, @book %></td>
@@ -32,29 +30,9 @@
         </tr>
           <% end %>
       </table>
-      <table>
-        <% @book.book_comments.each do |book_comment| %>
-        <tr>
-          <td>
-            <%= image_tag book_comment.user.get_profile_image, size:"100x100" %>
-            <%= book_comment.comment %>
-            <% if current_user == book_comment.user %>
-              <%= link_to "Destroy", book_book_comment_path(book_comment.book.id, book_comment.id), method: :delete, class: "btn btn-sm btn-danger" %>
-            <% end %>
-          </td>
-        </tr>
-
-      <% end %>
-      </table>
-      <div>
-        <%= form_with model: [@book, @book_comment] do |f| %>
-          <%= f.text_area :comment, rows: '5' %>
-          <%= f.submit "送信" %>
-        <% end %>
+      <div id= "commented_<%= @book.id %>">
+        <%= render "book_comment", book: @book, book_comment: @book_comment %>
       </div>
-      
-      
-      
     </div>
   </div>
 </div>
