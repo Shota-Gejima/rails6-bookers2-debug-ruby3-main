@@ -20,6 +20,13 @@ class User < ApplicationRecord
   has_many :followeds, through: :passive_relationships, source: :follower
   
   
+  has_many :entries, dependent: :destroy
+  
+  has_many :messages, dependent: :destroy
+  
+  has_many :rooms, through: :entries
+  
+  
   has_one_attached :profile_image
   
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="left-button">
+    <%= link_to "ユーザー一覧に戻る", users_path, class:"btn btn-info" %>
+  </div>
+
+  <% @entries.each do |e| %>
+    <% unless e.user == current_user %>
+    <h2><%= e.user.name %>さんとのチャットルーム</h2>
+    <% end %>
+  <% end %>
+
+  <hr>
+  <div class="chat">
+    <div class="chats">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <% if m.user_id == current_user.id %>
+              <div class="chat-fukidashi" style="text-align: right;">
+                <strong><%= m.chat %></strong>
+              </div>
+          <% else %>
+              <div class="chat-fukidashi" style="text-align: left;">
+                <strong><%= m.chat %></strong>
+              </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="errors">
+      <%= render "layouts/errors", obj: @message %>
+    </div>
+
+    <div class="posts">
+      <%= form_with model: @message, local: true do |f| %>
+        <%= f.text_field :chat, placeholder: "140字以内でメッセージを入力してください", size: 70, class: "form-text-field" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "投稿", class: "form-submit" %>
+      <% end %>
+    </div>
+  </div>
+</div>
