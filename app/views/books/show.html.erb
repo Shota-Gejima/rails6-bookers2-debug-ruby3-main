@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'users/info', user: @book.user %>
+      <%= render 'users/info', user: @book.user, isRoom: @isRoom, room: @room, roomId: @roomId, entry: @entry %>
       <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @book_new %>
     </div>
@@ -25,7 +25,8 @@
           
           <td id= "comment_count_<%= @book.id %>">
             <%= render "counter", book: @book %>
-          </td>
+          </td>  
+          <td>閲覧数：<%= @book.read_counts.count %></td>
           
           <% if @book.user == current_user %>
           <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>

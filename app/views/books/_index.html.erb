@@ -20,6 +20,7 @@
           <%= render "/favorites/favorites", book: book %>
         </td>
         <td><%= render "books/counter", book: book %></td>
+        <td>閲覧数：<%= book.read_counts.count %></td>
       </tr>
     <% end %>
   </tbody>
