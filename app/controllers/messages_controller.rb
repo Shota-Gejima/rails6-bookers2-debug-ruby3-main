@@ -8,12 +8,15 @@ class MessagesController < ApplicationController
     else
       flash[:alert] = "メッセージ送信に失敗しました。"
     end
-    render :validater unless @message.save
     
-end
+    redirect_to request.referer
+    
+  end
 
 private
 
   def message_params
     params.require(:message).permit(:user_id, :room_id, :chat)
   end
+  
+end

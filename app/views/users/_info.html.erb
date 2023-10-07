@@ -27,18 +27,6 @@
       <% end %>  
     </th>
     
-    
-    <th>
-      <% if user != current_user %>
-        <% if (current_user.following_by?(user)) && (user.following_by?(current_user)) %>
-          <% if isRoom == true %>
-            <%= link_to "Chatを始める", room_path(roomId) %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </th>
-    
-    
   </tr>
   
   
