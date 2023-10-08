@@ -32,6 +32,25 @@
         <%= render 'index', books: @books%>
       </div>
       
+      <h3>7日間分の投稿数</h3>
+      <table class= "table table-bordered">
+        <tr>
+          <th>6日目</th>
+          <th>5日目</th>
+          <th>4日目</th>
+          <th>3日目</th>
+          <th>2日目</th>
+          <th>1日目</th>
+          <th>今日</th>
+        </tr>
+          <td><%= @books_count.created_6days.count %></td>
+          <td><%= @books_count.created_5days.count %></td>
+          <td><%= @books_count.created_4days.count %></td>
+          <td><%= @books_count.created_3days.count %></td>
+          <td><%= @books_count.created_2days.count %></td>
+          <td><%= @books_count.created_yesterday.count %></td>
+          <td><%= @books_count.created_today.count %></td>
+      </table>
     </div>
   </div>
 </div>

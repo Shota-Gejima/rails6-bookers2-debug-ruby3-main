@@ -9,19 +9,21 @@ class BooksController < ApplicationController
       @read_count = ReadCount.new(user_id: current_user.id, book_id: @book.id)
       @read_count.save
       # current_user.read_counts.create(book_id: @book.id)　※↑２行省略するとこうできる
+      
+      
     end
     
   end
 
   def index
+    
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorited_users).
-      sort_by { |x| x.favorited_users.includes(:favorites).where(created_at: from...to).size }.reverse
-    
-    
+    @books = Book.includes(:favorited_users).sort_by { |x| x.favorited_users.includes(:favorites).where(created_at: from...to).size }.reverse
+      
     @book = Book.new
     # @books = Book.all
+    @books_count = Book.all
   end
 
   def create
