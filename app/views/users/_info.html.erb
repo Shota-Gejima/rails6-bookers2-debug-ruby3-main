@@ -22,7 +22,7 @@
         <% if user.following_by?(current_user) %>
           <%= link_to "フォローを外す", user_relationships_path(user), method: :delete, class: "btn btn-info" %>
         <% else %>
-          <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-info" %>
+          <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-success" %>
         <% end %>
       <% end %>  
     </th>
@@ -35,7 +35,10 @@
 </table>
 　
 <div class='row'>
+  <% if current_user != user %>
+    <% else %>
   <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
     <i class="fas fa-user-cog"></i>
+  <% end %>
   <% end %>
 </div>
