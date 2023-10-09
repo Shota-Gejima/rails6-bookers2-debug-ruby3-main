@@ -31,53 +31,33 @@ class UsersController < ApplicationController
     @this_week_book = @books.created_this_week
     @last_week_book = @books.created_last_week
     
-    if params[:created_at] == ""
-      @search_book = "日付を選択してください"
-    else
-      create_at = params[:created_at]
-      @search_book = @books.where(['created_at LIKE ?', "#{create_at}%"]).count
-    end
-    
   end
 
   def index
     @users = User.all
     @book = Book.new
-    
   end
 
   def edit
-    
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to user_path(current_user)
     end
-    
     @user = User.find(params[:id])
-    
   end
 
   def update
-    
     @user = User.find(params[:id])
-    
     if @user.update(user_params)
-      
       redirect_to user_path(@user), notice: "You have updated user successfully."
-      
     else
-      
       render :edit
-      
     end
-    
   end
     
   def follows
-    
     user = User.find(params[:id])
     @users = user.followers
-    
   end
   
   def followers
@@ -85,7 +65,21 @@ class UsersController < ApplicationController
     @users = user.followeds
   end
     
+
+  def daily_posts
   
+    user = User.find(params[:user_id])
+    
+    if params[:created_at] == ""
+    @search_book = "日付を選択してください"
+    render :daily_posts_form
+    else
+    @search_book = user.books.where(created_at: params[:created_at].to_date.all_day).count
+    render :daily_posts_form
+    end
+
+  end
+
 
   private
 

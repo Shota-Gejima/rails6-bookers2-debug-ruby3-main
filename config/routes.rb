@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
-    get "search" => "users#search"
+    get "daily_posts" => "users#daily_posts"
     
   end
   
