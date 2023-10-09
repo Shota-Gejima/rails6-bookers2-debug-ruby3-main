@@ -6,13 +6,11 @@
   <thead>
     <th>image</th>
     <th>name</th>
-    <th></th>
+    <th ></th>
     <th></th>
     <th></th>
   </thead>
   <tbody>
-    
-  </tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
@@ -22,6 +20,6 @@
         <td><%= link_to "Show", user_path(user) %></td>
       </tr>
     <% end %>
-<% end %>
   </tbody>
 </table>
+<% end %>

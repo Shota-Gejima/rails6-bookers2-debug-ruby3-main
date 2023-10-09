@@ -6,11 +6,14 @@
     <thead>
       <th>image</th>
       <th>name</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= image_tag user.get_profile_image, size: "100x100" %></td>
+          <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
           <td><%= user.name %></td>
           <td>フォロー数:<%= user.active_relationships.count %></td>
           <td>フォロワー数:<%= user.passive_relationships.count %></td>
